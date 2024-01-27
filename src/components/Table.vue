@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <table class="min-w-full divide-y divide-gray-300">
     <thead>
@@ -17,7 +18,7 @@
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-200">
-      <tr v-for="(transaction, index) in transactions" :key="index">
+      <tr v-for="(transaction, index) in transactionsList" :key="index">
         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
           {{ transaction.description }}
         </td>
@@ -27,7 +28,9 @@
         <td
           class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
         >
-          <a href="#" class="text-indigo-600 hover:text-indigo-900"
+          <a
+            class="text-indigo-600 hover:text-indigo-900"
+            @click="$emit('deleteTransaction', index)"
             >Delete<span class="sr-only"></span
           ></a>
         </td>
@@ -37,12 +40,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const transactions = ref([
-  {
-    description: 'Coffee',
-    amount: 100
-  }
-])
+defineProps(['transactionsList'])
+defineEmits(['deleteTransaction'])
 </script>
