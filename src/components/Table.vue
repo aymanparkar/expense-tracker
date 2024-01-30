@@ -40,6 +40,6 @@
 </template>
 
 <script lang="ts" setup>
-defineProps(['transactionsList'])
+defineProps(['transactionsList', 'name'])
 defineEmits(['deleteTransaction'])
 </script>
